@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.2)
 
-project(CppTemplateProject)
+project(CppTemplateProject VERSION 0.0.0)
 
 add_executable(application
   src/main.cpp
