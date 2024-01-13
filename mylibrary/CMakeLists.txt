@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.2)
 
-add_library(mylibrary
+add_library(mylibrary STATIC
   src/mylibrary.cpp
 )
 
