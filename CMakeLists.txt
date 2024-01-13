@@ -1,12 +1,16 @@
 cmake_minimum_required(VERSION 3.2)
 
-project(template)
+project(CppTemplateProject)
 
-add_executable(app
+add_executable(application
   src/main.cpp
 )
 
-# Testing
-enable_testing()
+# Statically linked library
+add_subdirectory(mylibrary)
 
+target_link_libraries(application PRIVATE mylibrary)
+target_include_directories(application PRIVATE mylibrary/include)
+
+# Testing
 add_subdirectory(tests)
