@@ -24,6 +24,10 @@ namespace mylibrary {
  */
 MY_LIBRARY_API int sum(int a, int b);
 
+namespace examples {
+    MY_LIBRARY_API void std_vector_custom_allocator();
+}
+
 } // namespace mylibrary
 
 #endif /* MY_LIBRARY_HPP */
