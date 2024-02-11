@@ -3,7 +3,10 @@
 
 namespace mylibrary {
 
-int function(int a, int b);
+/**
+ * @brief Returns the sum of two numbers
+ */
+int sum(int a, int b);
 
 } // namespace mylibrary
 

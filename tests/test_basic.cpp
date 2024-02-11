@@ -30,6 +30,6 @@ TEST_CASE("Factorial benchmark", "[benchmark]")
 
 TEST_CASE("Check mylibrary::function", "[mylibrary]")
 {
-    REQUIRE(mylibrary::function(4, 5) == 9);
-    REQUIRE(mylibrary::function(3, 4) == 7);
+    REQUIRE(mylibrary::sum(4, 5) == 9);
+    REQUIRE(mylibrary::sum(3, 4) == 7);
 }

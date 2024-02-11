@@ -3,6 +3,6 @@
 
 int main()
 {
-    std::cout << "Call function: " << mylibrary::function(1, 2) << '\n';
+    std::cout << "Call function: " << mylibrary::sum(1, 2) << '\n';
     return 0;
 }
