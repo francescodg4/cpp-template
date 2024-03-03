@@ -1,6 +1,6 @@
 ---
 Language:        Cpp
-# BasedOnStyle:  WebKit
+BasedOnStyle:  WebKit
 AccessModifierOffset: -4
 AlignAfterOpenBracket: false
 AlignConsecutiveAssignments: false
