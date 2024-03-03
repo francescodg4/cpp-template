@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.2)
 
 project(CppTemplateProject VERSION 0.0.0)
 
+find_package(spdlog REQUIRED)
+
 add_executable(application
   src/main.cpp
 )
@@ -9,7 +11,7 @@ add_executable(application
 # Statically linked library
 add_subdirectory(mylibrary)
 
-target_link_libraries(application PRIVATE mylibrary)
+target_link_libraries(application PRIVATE mylibrary spdlog::spdlog)
 target_include_directories(application PRIVATE mylibrary/include)
 
 # Testing
