@@ -22,6 +22,11 @@ namespace examples {
     public:
         using value_type = T;
 
+        CustomAllocator() = default;
+
+        template <typename U>
+        constexpr CustomAllocator(const CustomAllocator<U>&) noexcept { }
+
         T* allocate(std::size_t n_elements)
         {
             std::cout << "CustomAllocator::allocate("
@@ -39,6 +44,24 @@ namespace examples {
                       << '\n';
             ::operator delete(ptr);
         }
+
+        template <typename U, typename... Args>
+        void construct(U* p, Args&&... args)
+        {
+            std::cout << "Constructing element" << std::endl;
+            new (p) U(std::forward<Args>(args)...);
+        }
+
+        template <typename U>
+        void destroy(U* p) noexcept
+        {
+            std::cout << "Destroying element" << std::endl;
+            p->~U();
+        }
+
+        friend bool operator==(const CustomAllocator&, const CustomAllocator&) { return true; }
+
+        friend bool operator!=(const CustomAllocator&, const CustomAllocator&) { return false; }
     };
 
     void std_vector_custom_allocator()
@@ -47,13 +70,13 @@ namespace examples {
 
         a_vector.reserve(10); // memory is allocated here
 
-        std::cout << "(1) a_vector.begin address: 0x" << std::hex << (uintptr_t)(&a_vector[0]) << '\n';
+        std::cout << "(1) a_vector.begin address: 0x" << std::hex << (uintptr_t)(a_vector.data()) << '\n';
 
         std::fill_n(std::back_inserter(a_vector), 10, 42); // does not cause allocation as memory has been already reserved
 
         a_vector.push_back(42); // a reallocation is requested here
 
-        std::cout << "(3) a_vector.begin address: 0x" << std::hex << (uintptr_t)(&a_vector[0]) << '\n';
+        std::cout << "(3) a_vector.begin address: 0x" << std::hex << (uintptr_t)(a_vector.data()) << '\n';
     }
 } // namespace examples
 
