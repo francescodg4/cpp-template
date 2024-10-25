@@ -19,8 +19,12 @@ target_link_libraries(run-test PRIVATE Catch2::Catch2WithMain)
 target_include_directories(run-test PRIVATE ../mylibrary/include)
 target_link_libraries(run-test PRIVATE mylibrary)
 
+set_property(GLOBAL PROPERTY CTEST_TARGETS_ADDED 1) # disable generation of unused catch2 targets
+
 list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/extras)
 
 include(CTest)
 include(Catch)
 catch_discover_tests(run-test)
+
+enable_testing()
