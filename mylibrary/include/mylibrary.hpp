@@ -30,7 +30,7 @@ MY_LIBRARY_API int sum(int a, int b);
 
 namespace examples {
     MY_LIBRARY_API void std_vector_custom_allocator();
-}
+} // namespace examples
 
 } // namespace mylibrary
 

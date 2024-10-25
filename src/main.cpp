@@ -1,5 +1,6 @@
-#include "mylibrary.hpp"
 #include <iostream>
+
+#include "mylibrary.hpp"
 
 int main()
 {
