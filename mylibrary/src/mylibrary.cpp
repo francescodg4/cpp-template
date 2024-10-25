@@ -5,6 +5,7 @@
 
 void foo()
 {
+    std::cout << "foo()" << '\n';
 }
 
 namespace mylibrary {
