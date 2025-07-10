@@ -25,6 +25,9 @@ add_executable(application
   src/main.cpp
 )
 
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+configure_file(src/version.h.in version.h)
+
 # Statically linked library
 add_subdirectory(mylibrary)
 

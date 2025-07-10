@@ -1,12 +1,14 @@
 #include <iostream>
+
 #include <spdlog/spdlog.h>
 #include <argparse/argparse.hpp>
 
+#include "version.h"
 #include "mylibrary.hpp"
 
 int main(int argc, char* argv[])
 {
-    argparse::ArgumentParser program("Application");
+    argparse::ArgumentParser program("Application", APPLICATION_VERSION_STR);
 
     try {
         program.parse_args(argc, argv);
