@@ -2,6 +2,25 @@ cmake_minimum_required(VERSION 3.16)
 
 project(CppTemplateProject VERSION 0.0.0)
 
+Include(FetchContent)
+
+# ---- spdlog ----
+FetchContent_Declare(
+  spdlog
+  GIT_REPOSITORY https://github.com/gabime/spdlog.git
+  GIT_TAG v1.15.3
+)
+FetchContent_MakeAvailable(spdlog)
+
+# ---- argparse ----
+FetchContent_Declare(
+  argparse
+  GIT_REPOSITORY https://github.com/p-ranav/argparse.git
+  GIT_TAG v3.2
+)
+FetchContent_MakeAvailable(argparse)
+
+
 add_executable(application
   src/main.cpp
 )
@@ -11,6 +30,8 @@ add_subdirectory(mylibrary)
 
 target_link_libraries(application PRIVATE mylibrary)
 target_include_directories(application PRIVATE mylibrary/include)
+
+target_link_libraries(application PRIVATE spdlog argparse)
 
 # Testing
 add_subdirectory(tests)
