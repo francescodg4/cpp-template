@@ -1,31 +1,18 @@
-#include <iostream>
+#include <opencv2/core.hpp>
+#include <QApplication>
+#include <QLabel>
 
-#include <spdlog/spdlog.h>
-#include <argparse/argparse.hpp>
-
-#include "version.h"
-#include "mylibrary.hpp"
 
 int main(int argc, char* argv[])
 {
-    argparse::ArgumentParser program("Application", APPLICATION_VERSION_STR);
+    QApplication a(argc, argv);
 
-    try {
-        program.parse_args(argc, argv);
-    }
-    catch (const std::exception& err) {
-        std::cerr << err.what() << std::endl;
-        std::cerr << program;
-        return EXIT_FAILURE;
-    }
+    cv::Mat m(200, 200, CV_8UC3);
 
-    spdlog::info("Hello, world");
-    spdlog::error("This is an error message with arg: {}", 1);
+    QWidget w;
+    w.show();
 
-    foo();
+    int ret = a.exec();
 
-    std::cout << "Call function: " << mylibrary::sum(1, 2) << '\n';
-    mylibrary::examples::std_vector_custom_allocator();
-
-    return EXIT_SUCCESS;
+    return ret;
 }

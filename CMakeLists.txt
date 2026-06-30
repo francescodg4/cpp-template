@@ -20,7 +20,19 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(argparse)
 
+# ---- Qt ----
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
 
+find_package(Qt6 REQUIRED COMPONENTS Widgets)
+
+# ---- OpenCV ----
+set(OpenCV_STATIC ON)
+
+find_package(OpenCV REQUIRED)
+
+# ---- . ----
 add_executable(application
   src/main.cpp
 )
@@ -35,6 +47,12 @@ target_link_libraries(application PRIVATE mylibrary)
 target_include_directories(application PRIVATE mylibrary/include)
 
 target_link_libraries(application PRIVATE spdlog argparse)
+target_link_libraries(application PRIVATE
+  spdlog
+  argparse
+  Qt6::Widgets
+  ${OpenCV_LIBS}
+)
 
 # Testing
 add_subdirectory(tests)
